@@ -2,8 +2,45 @@
 .camera{cursor:pointer;touch-action:manipulation}
 #show{width:100vw;height:100dvh;max-width:100vw;overflow-y:auto;overflow-x:hidden;overscroll-behavior:none;touch-action:manipulation}
 #art{background:#080b12;height:min(58dvh,620px);touch-action:manipulation}
-#art .alive-painting{display:block;width:100%;height:100%;object-fit:contain;animation:painting-awake 5s ease-in-out infinite;transform-origin:center;will-change:transform}
+#art .alive-painting{display:block;width:100%;height:100%;object-fit:contain}
+.motion-piece{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none;will-change:transform;transform-origin:center}
+.piece-one{clip-path:ellipse(24% 32% at 65% 45%)}
+.piece-two{clip-path:ellipse(20% 27% at 35% 58%)}
+#show[data-painting="starry"] .piece-one{clip-path:ellipse(30% 27% at 73% 23%);animation:star-swirl 5s ease-in-out infinite}
+#show[data-painting="starry"] .piece-two{clip-path:polygon(0 0,100% 0,100% 52%,0 63%);animation:sky-drift 7s ease-in-out infinite}
+#show[data-painting="water-lilies"] .piece-one{clip-path:ellipse(38% 20% at 48% 70%);animation:lilies-float 4.8s ease-in-out infinite}
+#show[data-painting="water-lilies"] .piece-two{clip-path:ellipse(24% 18% at 70% 48%);animation:lilies-float 4s 1s ease-in-out infinite reverse}
+#show[data-painting="sunflowers"] .piece-one{clip-path:ellipse(35% 43% at 50% 39%);transform-origin:50% 75%;animation:flowers-sway 3.6s ease-in-out infinite}
+#show[data-painting="sunflowers"] .piece-two{clip-path:ellipse(19% 24% at 66% 31%);animation:flower-nod 2.8s ease-in-out infinite}
+#show[data-painting="great-wave"] .piece-one{clip-path:polygon(0 5%,68% 0,72% 58%,0 77%);animation:wave-surge 3.4s ease-in-out infinite}
+#show[data-painting="great-wave"] .piece-two{clip-path:polygon(30% 34%,100% 28%,100% 100%,12% 100%);animation:foam-rush 2.8s ease-in-out infinite}
+#show[data-painting="two-sisters"] .piece-one{clip-path:ellipse(30% 45% at 51% 54%);transform-origin:50% 85%;animation:portrait-wave 4.2s ease-in-out infinite}
+#show[data-painting="two-sisters"] .piece-two{clip-path:ellipse(20% 25% at 35% 72%);animation:basket-bob 3.1s ease-in-out infinite}
+#show[data-painting="ballet-class"] .piece-one{clip-path:ellipse(25% 48% at 60% 49%);transform-origin:60% 88%;animation:ballerina-plie 2.7s ease-in-out infinite}
+#show[data-painting="ballet-class"] .piece-two{clip-path:ellipse(27% 35% at 33% 55%);animation:dancers-step 3.2s ease-in-out infinite}
+#show[data-painting="dancers-pink"] .piece-one{clip-path:ellipse(39% 48% at 55% 48%);transform-origin:55% 83%;animation:pink-turn 2.9s ease-in-out infinite}
+#show[data-painting="dancers-pink"] .piece-two{clip-path:ellipse(23% 38% at 27% 50%);animation:pink-step 2.4s ease-in-out infinite alternate}
+#show[data-painting="bougival"] .piece-one{clip-path:ellipse(31% 52% at 52% 50%);transform-origin:52% 85%;animation:waltz-turn 3.6s ease-in-out infinite}
+#show[data-painting="bougival"] .piece-two{clip-path:ellipse(18% 30% at 68% 45%);animation:waltz-step 3.6s ease-in-out infinite}
+#show[data-painting="el-jaleo"] .piece-one{clip-path:ellipse(24% 48% at 67% 51%);transform-origin:67% 87%;animation:flamenco 1.8s ease-in-out infinite}
+#show[data-painting="el-jaleo"] .piece-two{clip-path:ellipse(30% 25% at 37% 63%);animation:guitar-pulse 1.2s ease-in-out infinite}
 .sparkles{position:absolute;inset:8%;color:var(--a);font-size:30px;text-shadow:0 0 14px currentColor;animation:sparkle-drift 4s ease-in-out infinite;pointer-events:none}
-@keyframes painting-awake{0%,100%{transform:translate3d(0,0,0) rotate(0)}45%{transform:translate3d(0,-5px,0) rotate(.35deg)}70%{transform:translate3d(0,3px,0) rotate(-.25deg)}}
 @keyframes sparkle-drift{50%{transform:translate(5%,-5%) scale(1.12);opacity:.55}}
+@keyframes star-swirl{50%{transform:rotate(2deg) translateY(-4px)}}
+@keyframes sky-drift{50%{transform:translateX(7px)}}
+@keyframes lilies-float{50%{transform:translate(5px,-7px) rotate(.5deg)}}
+@keyframes flowers-sway{35%{transform:rotate(1.6deg)}70%{transform:rotate(-1.2deg)}}
+@keyframes flower-nod{50%{transform:translateY(5px) rotate(1deg)}}
+@keyframes wave-surge{50%{transform:translate(10px,-5px) rotate(-.4deg)}}
+@keyframes foam-rush{50%{transform:translateX(12px)}}
+@keyframes portrait-wave{50%{transform:rotate(.8deg) translateY(-3px)}}
+@keyframes basket-bob{50%{transform:translateY(-6px) rotate(-1deg)}}
+@keyframes ballerina-plie{45%{transform:translateY(7px) rotate(.8deg)}70%{transform:translateY(-5px) rotate(-.7deg)}}
+@keyframes dancers-step{50%{transform:translateX(7px) rotate(.6deg)}}
+@keyframes pink-turn{40%{transform:rotate(1.8deg) translateX(5px)}75%{transform:rotate(-1.3deg) translateX(-4px)}}
+@keyframes pink-step{to{transform:translate(8px,-5px) rotate(1deg)}}
+@keyframes waltz-turn{35%{transform:rotate(1.4deg) translateX(5px)}70%{transform:rotate(-1deg) translateX(-4px)}}
+@keyframes waltz-step{50%{transform:translate(7px,-4px)}}
+@keyframes flamenco{35%{transform:rotate(1.8deg) translateY(-4px)}70%{transform:rotate(-1.2deg) translateX(5px)}}
+@keyframes guitar-pulse{50%{transform:translateY(3px) rotate(.5deg)}}
 
