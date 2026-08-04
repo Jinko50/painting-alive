@@ -1,12 +1,12 @@
 
 const PAINTINGS = [
-  ['starry','The Starry Night','Vincent van Gogh','#92c9ff','Dance of the Sugar Plum Fairy — The Nutcracker','https://commons.wikimedia.org/wiki/Special:Redirect/file/Dance_of_the_Sugar_Plum_Fairies_(ISRC_USUAN1100270).mp3'],
+  ['starry','The Starry Night','Vincent van Gogh','#92c9ff','Dance of the Sugar Plum Fairy — The Nutcracker','https://upload.wikimedia.org/wikipedia/commons/1/13/Dance_of_the_Sugar_Plum_Fairies_%28ISRC_USUAN1100270%29.mp3'],
   ['water-lilies','Water Lilies','Claude Monet','#a9dfbd','Waltz of the Flowers — The Nutcracker','https://upload.wikimedia.org/wikipedia/commons/e/e4/P.I._Tchaikovsky%27s_Waltz_of_the_Flowers_Performed_by_The_U.S._Army_Band%2C_c._2019.mp3'],
   ['sunflowers','Sunflowers','Vincent van Gogh','#ffe177','Russian Dance (Trepak) — The Nutcracker','https://upload.wikimedia.org/wikipedia/commons/7/7a/Tchaikovsky_-_Nutcracker_Suite_-_Russian_Dance_-_Philip_Milman_-_Lud_and_Schlatts_Musical_Emporium.wav'],
   ['great-wave','The Great Wave','Katsushika Hokusai','#9bdcf2','Waltz — Swan Lake','https://upload.wikimedia.org/wikipedia/commons/b/bb/Tchaikovsky_Swan_Lake_Op.20_No.2.Waltz.ogg'],
   ['two-sisters','Two Sisters','Pierre-Auguste Renoir','#ffa88e','Overture — The Sleeping Beauty','https://upload.wikimedia.org/wikipedia/commons/4/43/Tchaikovsky_-_%D0%A1%D0%BF%D1%8F%D1%89%D0%B0%D1%8F_%D0%BA%D1%80%D0%B0%D1%81%D0%B0%D0%B2%D0%B8%D1%86%D0%B0_-_Sleeping_Beauty_ouverture.ogg'],
   ['ballet-class','The Ballet Class','Edgar Degas','#efbdd5','Giselle, Act I — Giselle','https://commons.wikimedia.org/wiki/Special:Redirect/file/Giselle,_or_The_Wilis_by_Adolphe_Adam_act_1.ogg'],
-  ['dancers-pink','Dancers in Pink','Edgar Degas','#f4b3cc','Dance of the Sugar Plum Fairy — The Nutcracker','https://commons.wikimedia.org/wiki/Special:Redirect/file/Dance_of_the_Sugar_Plum_Fairies_(ISRC_USUAN1100270).mp3'],
+  ['dancers-pink','Dancers in Pink','Edgar Degas','#f4b3cc','Dance of the Sugar Plum Fairy — The Nutcracker','https://upload.wikimedia.org/wikipedia/commons/1/13/Dance_of_the_Sugar_Plum_Fairies_%28ISRC_USUAN1100270%29.mp3'],
   ['bougival','Dance at Bougival','Pierre-Auguste Renoir','#c9eacb','Waltz of the Flowers — The Nutcracker','https://upload.wikimedia.org/wikipedia/commons/e/e4/P.I._Tchaikovsky%27s_Waltz_of_the_Flowers_Performed_by_The_U.S._Army_Band%2C_c._2019.mp3'],
   ['el-jaleo','El Jaleo','John Singer Sargent','#f2d36f','Russian Dance (Trepak) — The Nutcracker','https://upload.wikimedia.org/wikipedia/commons/7/7a/Tchaikovsky_-_Nutcracker_Suite_-_Russian_Dance_-_Philip_Milman_-_Lud_and_Schlatts_Musical_Emporium.wav']
 ].map(x => ({id:x[0],title:x[1],artist:x[2],color:x[3],track:x[4],audio:x[5],image:`paintings-mobile/${x[0]}.jpg`}));
@@ -73,10 +73,11 @@ function reveal(p) {
   clearTimeout(scanTimer);
   stopCamera();
   show.hidden = false;
+  show.dataset.painting = p.id;
   show.style.setProperty('--a',p.color);
   document.querySelector('#title').textContent = p.title;
   document.querySelector('#artist').textContent = `${p.artist} · ${p.track}`;
-  art.innerHTML = `<img class="alive-painting" src="${p.image}" alt="${p.title}" decoding="sync"><div class="sparkles">✦ · ✧ · ✦</div>`;
+  art.innerHTML = `<img class="alive-painting" src="${p.image}" alt="${p.title}" decoding="sync"><img class="motion-piece piece-one" src="${p.image}" alt="" aria-hidden="true"><img class="motion-piece piece-two" src="${p.image}" alt="" aria-hidden="true"><div class="sparkles">✦ · ✧ · ✦</div>`;
   playMusic(p);
   const replay = document.querySelector('#variation');
   replay.textContent = 'Play from beginning';
