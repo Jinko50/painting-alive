@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+  <meta name="theme-color" content="#11182a">
+  <base href="../">
+  <link rel="stylesheet" href="app.css?v=8">
+  <link rel="stylesheet" href="v8/v8.css?v=8">
+  <title>Gaia's Painting Alive</title>
+</head>
+<body>
+  <header><b>Gaia's Painting Alive</b><span>Private camera</span></header>
+  <main>
+    <section class="hero">
+      <small>A magical museum for Gaia</small>
+      <h1>Scan. Move closer.<br><em>Discover Gaia.</em></h1>
+      <p>Scan the small square beside a painting, then move the phone closer and farther. Hidden friends and a new little character will appear.</p>
+    </section>
+    <section class="scan">
+      <div class="camera" role="button" tabindex="0" aria-label="Open camera">
+        <video playsinline muted></video>
+        <div class="empty"><b>Tap to open camera</b><small>Images stay on this device</small></div>
+        <div class="guide"></div>
+      </div>
+      <p id="status">Ready — version 8</p>
+    </section>
+    <section class="library">
+      <small>TRY WITHOUT PRINTING</small>
+      <h2>Choose a painting</h2>
+      <div id="rail"></div>
+    </section>
+  </main>
+  <canvas hidden></canvas>
+  <div id="show" hidden>
+    <button id="close" aria-label="Close">×</button>
+    <div id="tracker"><video id="trackerVideo" playsinline muted></video><span>Keep SCAN ME in view</span></div>
+    <div id="art"></div>
+    <div class="discover">
+      <small id="stage">THE ORIGINAL PAINTING</small>
+      <div class="meter"><i></i></div>
+      <p id="hint">Move closer to discover who is hiding here…</p>
+      <label id="manual">Move the phone <input id="distance" type="range" min="0" max="100" value="0"></label>
+    </div>
+    <div class="caption">
+      <h2 id="title"></h2>
+      <p id="artist"></p>
+      <button id="variation">Play from beginning</button>
+    </div>
+  </div>
+  <script src="vendor/jsQR.js?v=8"></script>
+  <script src="app-v8.js?v=8"></script>
+</body>
+</html>
