@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
   <meta name="theme-color" content="#11182a">
   <base href="../">
-  <link rel="stylesheet" href="app.css?v=8">
-  <link rel="stylesheet" href="v8/v8.css?v=8">
+  <link rel="stylesheet" href="app.css?v=8.1">
+  <link rel="stylesheet" href="v8/v8.css?v=8.1">
   <title>Gaia's Painting Alive</title>
 </head>
 <body>
@@ -35,7 +35,7 @@
   <canvas hidden></canvas>
   <div id="show" hidden>
     <button id="close" aria-label="Close">×</button>
-    <div id="tracker"><video id="trackerVideo" playsinline muted></video><span>Keep SCAN ME in view</span></div>
+    <div id="tracker"><canvas id="trackerCanvas"></canvas><span>Keep SCAN ME in view</span></div>
     <div id="art"></div>
     <div class="discover">
       <small id="stage">THE ORIGINAL PAINTING</small>
@@ -49,7 +49,7 @@
       <button id="variation">Play from beginning</button>
     </div>
   </div>
-  <script src="vendor/jsQR.js?v=8"></script>
-  <script src="app-v8.js?v=8"></script>
+  <script src="vendor/jsQR.js?v=8.1"></script>
+  <script src="app-v8.js?v=8.1"></script>
 </body>
 </html>
