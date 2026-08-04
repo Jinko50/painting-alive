@@ -9,7 +9,7 @@ const PAINTINGS = [
   ['dancers-pink','Dancers in Pink','Edgar Degas','#f4b3cc','Dance of the Sugar Plum Fairy — The Nutcracker','https://commons.wikimedia.org/wiki/Special:Redirect/file/Dance_of_the_Sugar_Plum_Fairies_(ISRC_USUAN1100270).mp3'],
   ['bougival','Dance at Bougival','Pierre-Auguste Renoir','#c9eacb','Waltz of the Flowers — The Nutcracker','https://upload.wikimedia.org/wikipedia/commons/e/e4/P.I._Tchaikovsky%27s_Waltz_of_the_Flowers_Performed_by_The_U.S._Army_Band%2C_c._2019.mp3'],
   ['el-jaleo','El Jaleo','John Singer Sargent','#f2d36f','Russian Dance (Trepak) — The Nutcracker','https://upload.wikimedia.org/wikipedia/commons/7/7a/Tchaikovsky_-_Nutcracker_Suite_-_Russian_Dance_-_Philip_Milman_-_Lud_and_Schlatts_Musical_Emporium.wav']
-].map(x => ({id:x[0],title:x[1],artist:x[2],color:x[3],track:x[4],audio:x[5],image:`paintings/${x[0]}.jpg`}));
+].map(x => ({id:x[0],title:x[1],artist:x[2],color:x[3],track:x[4],audio:x[5],image:`paintings-mobile/${x[0]}.jpg`}));
 
 const byId = Object.fromEntries(PAINTINGS.map(p => [p.id,p]));
 const rail = document.querySelector('#rail');
@@ -24,7 +24,7 @@ let stream = null, scanTimer = null, audio = null, audioContext = null;
 PAINTINGS.forEach(p => {
   const button = document.createElement('button');
   button.className = 'tile';
-  button.innerHTML = `<img src="${p.image}" alt=""><b>${p.title}</b><small>${p.artist}</small>`;
+  button.innerHTML = `<img src="${p.image}" alt="" loading="lazy" decoding="async"><b>${p.title}</b><small>${p.artist}</small>`;
   button.onclick = () => reveal(p);
   rail.append(button);
 });
@@ -55,7 +55,7 @@ function scan() {
   const result = jsQR(pixels.data,width,height,{inversionAttempts:'attemptBoth'});
   if (result && result.data.startsWith('PAINTING:')) {
     const painting = byId[result.data.slice(9)];
-    if (painting) { reveal(painting); return; }
+    if (painting) { canvas.width=1; canvas.height=1; reveal(painting); return; }
   }
   status.textContent = 'Looking for the SCAN ME square… move closer if needed';
   scanTimer = setTimeout(scan,350);
@@ -71,11 +71,12 @@ function stopCamera() {
 
 function reveal(p) {
   clearTimeout(scanTimer);
+  stopCamera();
   show.hidden = false;
   show.style.setProperty('--a',p.color);
   document.querySelector('#title').textContent = p.title;
   document.querySelector('#artist').textContent = `${p.artist} · ${p.track}`;
-  art.innerHTML = `<img class="alive-painting" src="${p.image}" alt="${p.title}"><div class="sparkles">✦ · ✧ · ✦</div>`;
+  art.innerHTML = `<img class="alive-painting" src="${p.image}" alt="${p.title}" decoding="sync"><div class="sparkles">✦ · ✧ · ✦</div>`;
   playMusic(p);
   const replay = document.querySelector('#variation');
   replay.textContent = 'Play from beginning';
@@ -105,6 +106,6 @@ panel.onkeydown = event => { if (event.key === 'Enter' || event.key === ' ') tog
 document.querySelector('#close').onclick = () => {
   show.hidden = true;
   audio?.pause();
-  if (stream) { status.textContent = 'Camera is still on — scan another marker'; scan(); }
+  status.textContent = 'Tap the camera screen to scan another painting';
 };
 
