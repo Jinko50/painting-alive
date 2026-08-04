@@ -1,0 +1,8 @@
+
+.camera{cursor:pointer;touch-action:manipulation}
+#art{background:#080b12}
+#art .alive-painting{display:block;width:100%;height:100%;object-fit:contain;animation:painting-awake 5s ease-in-out infinite;transform-origin:center}
+.sparkles{position:absolute;inset:8%;color:var(--a);font-size:30px;text-shadow:0 0 14px currentColor;animation:sparkle-drift 4s ease-in-out infinite;pointer-events:none}
+@keyframes painting-awake{0%,100%{transform:scale(1) rotate(0)}45%{transform:scale(1.045) rotate(.8deg)}70%{transform:scale(1.02) rotate(-.5deg)}}
+@keyframes sparkle-drift{50%{transform:translate(5%,-5%) scale(1.12);opacity:.55}}
+
